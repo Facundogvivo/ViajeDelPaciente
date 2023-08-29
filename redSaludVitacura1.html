@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LZNJC53FB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6LZNJC53FB');
+    </script>
+    <meta charset="UTF-8">
+		<link rel="shortcut icon" type="image/jpg" href="assets/img/ico/Placemap.ico"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/db428faf56.js" crossorigin="anonymous"></script>
+    <!-- Javascript -->
+    <script src="assets/js/app.js"></script>
+    <title>PlaceMap</title>
+    <style>
+      #canvas-container {
+          position: relative;
+      }
+
+      #canvas {
+          border: 3px solid black;
+      }
+
+      #image-link {
+          position: absolute;
+          top: 80px; /* Ajusta la posición según tus necesidades */
+          left: 180px; /* Ajusta la posición según tus necesidades */
+      }
+
+      .info {
+        position: absolute;
+        top: 10px; /* Ajusta la posición según tus necesidades */
+        left: 250px; /* Ajusta la posición según tus necesidades */
+        font-size: 10px;
+    }
+    </style>
+  </head>
+  <body onload="paso1();">
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/img/img/Placemap.png" alt="" height="30" class="d-inline-block align-text-top">
+          PlaceMap
+        </a>
+        <img src="assets/img/svg/logo-redsalud.svg" alt="Red Salud Vitacura" width="100px" style="display: right">
+      </div>
+    </nav>
+    <main>
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">&#11013;&#65039; <a href="inicio.html">Volver</a></li>
+        </ol>
+      </nav>
+
+      <section id="pisoN1">
+        <p id="piso" class="center"></p>
+        <p id="titulo1"></p>
+
+        <div id="canvas-container">
+          <canvas id="canvas" style="border:3px solid #000;">
+            <img id="image" src="assets/img/img/piso1general.png" alt="Piso 1">
+            Tu navegador no soporta canvas
+          </canvas>
+          <a id="image-link" href="https://api.whatsapp.com/send?phone=56966992704&text=hola,%20quisiera%20agendar%20una%20hora">
+            <img id="info1" src="assets/img/img/Placemap.png" alt="Imagen Clickeable" style="width: 20px; display: none;">
+          </a>
+          <div class="info" id="info2" style="display: none;">
+            Haga click en <img src="assets/img/img/Placemap.png" alt="Imagen Clickeable" style="width: 10px;"> para hablar al ejecutivo de agenda
+          </div>
+          
+        </div>
+      </section>
+      <a href="#" class="btn btn-primary margin" id="abrirModal" style="display: none;">Siguiente paso</a>
+      <!-- Ventana modal, por defecto no visiblel -->
+        
+      <div id="ventanaModal" class="modal">
+        <div class="contenido-modal center">
+            <img src="assets/img/gif/Imagen-animada-Ascensor-09.gif" alt="Ascensor" style="width: 100%;">
+            <p>Debe tomar el ascensor hasta el piso -1</p>
+            <a href="#" class="btn btn-primary margin cerrar">Aceptar</a>
+            
+        </div>
+      </div>
+    </main>
+    <!-- Javascript -->
+    <script src="assets/js/app1.js"></script>
+  </body>
+</html>

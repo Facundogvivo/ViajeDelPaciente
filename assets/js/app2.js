@@ -1,0 +1,95 @@
+// Limpiar canvas
+
+function limpiar() {
+    const mi_canvas = document.getElementById("canvas");
+    const contexto = mi_canvas.getContext("2d");
+    var ancho = mi_canvas.width;
+    var alto = mi_canvas.height;
+    contexto.clearRect(0, 0, ancho, alto);
+}
+
+// Colocar imagen en canvas
+
+function piso1ACardiologia(){
+
+    limpiar();
+
+    const mi_canvas = document.getElementById("canvas");
+    const contexto = mi_canvas.getContext("2d");
+
+    var ancho = mi_canvas.width;
+    var alto = mi_canvas.height;
+
+    let pisoEstablecimiento = new Image();
+    pisoEstablecimiento.src ="assets/img/img/piso1A.png";
+    pisoEstablecimiento.addEventListener('load', mostrar_imagen, false);
+    
+    function mostrar_imagen() {
+        contexto.drawImage(pisoEstablecimiento, 0, 0, ancho, alto);
+    }
+}
+
+// Mensajes
+
+function mensaje1() {
+    document.getElementById('piso').innerHTML = "Piso 1"
+    document.getElementById('titulo1').innerHTML = "Debe dirigirse a la <font color='red'><em><b>Sala de espera de cardología de la Torre A</b></em></font>"
+
+}
+
+const mi_canvas = document.getElementById("canvas");
+const contexto = mi_canvas.getContext("2d");
+
+// Trayectorias
+
+function SE1TAC() {
+
+    const lineas = [
+        { x1: 126, y1: 63, x2: 138, y2: 67 },
+        { x1: 138, y1: 67, x2: 171, y2: 42 }
+    ];
+    
+    let indiceLineaActual = 0;
+    let longitudDibujo = 0;
+
+    function animar_linea() {
+        contexto.beginPath();
+        contexto.strokeStyle = "yellow";
+        contexto.lineWidth = 2;
+
+        contexto.moveTo(lineas[indiceLineaActual].x1, lineas[indiceLineaActual].y1);
+        contexto.lineTo(
+            lineas[indiceLineaActual].x1 + (lineas[indiceLineaActual].x2 - lineas[indiceLineaActual].x1) * longitudDibujo,
+            lineas[indiceLineaActual].y1 + (lineas[indiceLineaActual].y2 - lineas[indiceLineaActual].y1) * longitudDibujo
+        );
+
+        contexto.stroke();
+        contexto.closePath();
+
+        longitudDibujo += 0.01; // Ajusta este valor para controlar la velocidad de dibujo
+
+        if (longitudDibujo >= 1) {
+            longitudDibujo = 0;
+            indiceLineaActual++;
+
+            if (indiceLineaActual >= lineas.length) {
+                cancelAnimationFrame(fx_animar_linea);
+                return;
+            }
+        }
+
+        fx_animar_linea = requestAnimationFrame(animar_linea);
+    }
+
+    let fx_animar_linea = requestAnimationFrame(animar_linea);
+    
+}
+
+//Mostrar recorrido
+
+function paso1(){
+    limpiar();
+    piso1ACardiologia();
+    mensaje1();
+    SE1TAC();
+}
