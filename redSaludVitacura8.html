@@ -25,6 +25,24 @@
     <!-- Javascript -->
     <script src="assets/js/app.js"></script>
     <title>PlaceMap</title>
+    <!-- CDN Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <script>
+      function mostrarFechaHora() {
+          var fechaHora = new Date(); // Obtiene la fecha y hora actual
+          var fecha = fechaHora.toLocaleDateString(); // Obtiene la fecha en formato legible
+          var hora = fechaHora.toLocaleTimeString(); // Obtiene la hora en formato legible
+
+          // Muestra la fecha y hora en un elemento con el id "fechaHora"
+          document.getElementById("fecha").value =  fecha ;
+          document.getElementById("hora").value = hora;
+          document.getElementById("fechaInput").value =  fecha ;
+          document.getElementById("horaInput").value = hora;
+      }
+
+      // Llama a la función mostrarFechaHora cuando la página se carga
+      setInterval(mostrarFechaHora, 1000); // 1000 milisegundos = 1 segundo
+    </script>
     <style>
       #canvas-container {
           position: relative;
@@ -36,8 +54,8 @@
 
       #image-link {
           position: absolute;
-          top: 90px; /* Ajusta la posición según tus necesidades */
-          left: 70px; /* Ajusta la posición según tus necesidades */
+          top: 50px; /* Ajusta la posición según tus necesidades */
+          left: 120px; /* Ajusta la posición según tus necesidades */
       }
 
       .info {
@@ -50,9 +68,43 @@
         border-radius: 10px;
         padding: 5px;
     }
+    .rating {
+      display: flex;
+      justify-content: space-between;
+  }
+      
+  .bi-emoji-smile {
+      font-size: 32px;
+      color: #ddd;
+      transition: color 0.3s;
+      cursor: pointer;
+  }
+  
+  .bi-emoji-angry {
+      font-size: 32px;
+      color: #ddd;
+      transition: color 0.3s;
+      cursor: pointer;
+  }
+  .emoji-smile {
+    color: yellow; /* Cambiar el color del emoji-smile a amarillo */
+  }
+  
+  .emoji-angry {
+    color: red; /* Cambiar el color del emoji-angry a rojo */
+  }
+  li{
+    list-style: none;
+  }
+  .miDiv {
+    display: block;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 10px; /* Añade espacio de relleno alrededor del contenido */
+    text-align: center; /* Centra el contenido horizontalmente */
+  }
     </style>
   </head>
-  <body onload="paso1();">
+  <body onload="paso1(); sonido1();">
     <nav class="navbar navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
@@ -75,7 +127,7 @@
 
         <div id="canvas-container">
           <canvas id="canvas" style="border:3px solid #000;">
-            <img id="image" src="assets/img/img/piso1general.png" alt="Piso 1">
+            <img id="image" src="assets/img/img/nivel 1 general.png" alt="Piso 1">
             Tu navegador no soporta canvas
           </canvas>
           <a id="image-link" href="https://api.whatsapp.com/send?phone=56966992704&text=hola,%20quisiera%20agendar%20una%20hora">
@@ -87,7 +139,9 @@
           
         </div>
       </section>
-      <a href="#" class="btn btn-primary margin" id="abrirModal" style="display: none;">Siguiente paso</a>
+      <a href="#" class="btn btn-primary margin" id="abrirModal" style="display: none;" onclick="sonido2()">Siguiente paso</a>
+      
+      <a href="#" class="btn btn-primary margin" id="encuesta" style="display: none;">Encuesta</a>
                
         <!-- Ventana modal, por defecto no visiblel -->
         
@@ -99,8 +153,84 @@
               
           </div>
         </div>
-
+      
+        <div id="ventanaModal1" class="modal">
+          <div class="contenido-modal center">
+              <div>
+                <center>
+                <img src="assets/img/img/Placemap.png" class="card-img-top p-1" alt="Placemap" style="display: grid; width: 100px; text-align:center">
+                <form action="gracias.php" method="post">    
+                  <div>
+                    <div class="miDiv">
+                      <p name="fecha" id="fecha" style="float: left"></p>
+                      <p name="hora" id="hora" style="float: right"></p>
+                    </div>
+                    <br><br>
+                    <p>¿Que tán útil fue usar Placemap?</p>
+                    <div class="rating">
+                      <i>me<br>gusta</i>
+                      <li name="emojiSmile" id="emojiSmile" class="bi bi-emoji-smile" value="bien"></li>
+                      <li name="emojiAngry" id="emojiAngry" class="bi bi-emoji-angry" value="mal"></li>
+                      <i>no me<br>gusta</i>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="zmdi">&#128190;</i> &nbsp;&nbsp; Guardar</button>
+                    
+                    <div class="miDiv">
+                      <input name="meGustaInput" id="meGustaInput" style="display: none;">
+                      <input name="noMeGustaInput" id="noMeGustaInput" style="display: none;">
+                      
+                      <input name="fechaInput" id="fechaInput" style="display: none;">
+                      <input name="horaInput" id="horaInput" style="display: none;">
+                    </div>
+                  </div>
+                </form>  
+              </center>      
+              </div> 
+          </div>
+        </div>
     </main>
+    <script>
+      var emojiSmile = document.getElementById("emojiSmile");
+      var amarillo = false;
+      
+      emojiSmile.addEventListener("click", function() {
+        if (!amarillo) {
+          emojiSmile.style.color = "gold";
+          emojiAngry.style.color = "";
+          amarillo = true;
+          rojo = false;
+          document.getElementById("meGustaInput").value = "X";
+          document.getElementById("noMeGustaInput").value = "";
+        } else {
+          emojiSmile.style.color = "";
+          emojiAngry.style.color = "";
+          amarillo = false;
+          rojo = false;
+          document.getElementById("meGustaInput").value = "";
+          document.getElementById("noMeGustaInput").value = "";
+        }
+      });
+      var emojiAngry = document.getElementById("emojiAngry");
+      var rojo = false;
+      
+      emojiAngry.addEventListener("click", function() {
+        if (!rojo) {
+          emojiSmile.style.color = "";
+          emojiAngry.style.color = "red";
+          amarillo = false;
+          rojo = true;
+          document.getElementById("meGustaInput").value = "";
+          document.getElementById("noMeGustaInput").value = "X";
+        } else {
+          emojiSmile.style.color = "";
+          emojiAngry.style.color = "";
+          amarillo = false;
+          rojo = false;
+          document.getElementById("meGustaInput").value = "";
+          document.getElementById("noMeGustaInput").value = "";
+        }
+      });
+    </script>  
     <!-- Javascript -->
     <script src="assets/js/app8.js"></script>
   </body>

@@ -21,7 +21,7 @@ function piso1general(){
     var alto = mi_canvas.height;
 
     let pisoEstablecimiento = new Image();
-    pisoEstablecimiento.src ="assets/img/img/piso1general.png";
+    pisoEstablecimiento.src ="assets/img/img/nivel 1 general.png";
     pisoEstablecimiento.addEventListener('load', mostrar_imagen, false);
     
     function mostrar_imagen() {
@@ -39,7 +39,7 @@ function piso4A(){
     var alto = mi_canvas.height;
 
     let pisoEstablecimiento = new Image();
-    pisoEstablecimiento.src ="assets/img/img/piso4A.png";
+    pisoEstablecimiento.src ="assets/img/img/nivel 4A.png";
     pisoEstablecimiento.addEventListener('load', mostrar_imagen, false);
     
     function mostrar_imagen() {
@@ -60,6 +60,33 @@ function mensaje2() {
 
 }
 
+const cargarSonido = function (fuente) {
+    const sonido = document.createElement("audio");
+    sonido.src = fuente;
+    sonido.id = ("sonido1");
+    sonido.setAttribute("preload", "auto");
+    sonido.setAttribute("controls", "none");
+    sonido.style.display = "none"; // <-- oculto
+    document.body.appendChild(sonido);
+    return sonido;
+    };
+
+function sonido1(){
+    // Carga un sonido a través de su fuente y lo inyecta de manera oculta
+    const sonido1 = cargarSonido("assets/audio/nivel 1 general.mp3");
+    sonido1.play();
+    
+    }
+function sonido2(){
+ 
+    const sonido2 = cargarSonido("assets/audio/ascensor4.mp3");
+    sonido2.play();
+}
+function sonido3(){
+
+    const sonido3 = cargarSonido("assets/audio/nivel 4A.mp3");
+    sonido3.play();
+}
 const mi_canvas = document.getElementById("canvas");
 const contexto = mi_canvas.getContext("2d");
 
@@ -68,9 +95,10 @@ const contexto = mi_canvas.getContext("2d");
 function ascensor() {
 
     const lineas = [
-        { x1: 126, y1: 63, x2: 130, y2: 65 },
-        { x1: 130, y1: 65, x2: 140, y2: 80 },
-        { x1: 140, y1: 80, x2: 111, y2: 107 }
+        { x1: 60, y1: 105, x2: 60, y2: 85 },
+        { x1: 60, y1: 85, x2: 81, y2: 85 },
+        { x1: 81, y1: 85, x2: 122, y2: 62 },
+        { x1: 121, y1: 62, x2: 255, y2: 62 }
     ];
     
     let indiceLineaActual = 0;
@@ -115,7 +143,7 @@ function SE4TA() {
     document.getElementById("info2").style.display ="block";
 
     const lineas = [
-        { x1: 158, y1: 70, x2: 115, y2: 105 }
+        { x1: 225, y1: 74, x2: 120, y2: 74 }
     ];
     
     let indiceLineaActual = 0;
@@ -187,6 +215,7 @@ boton.addEventListener("click",function() {
 span.addEventListener("click",function() {
   modal.style.display = "none";
   paso2();
+  sonido3();
 });
 
 // Si el usuario hace click fuera de la ventana, se cierra.
@@ -194,5 +223,33 @@ window.addEventListener("click",function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
     paso2();
+    sonido3();
+  }
+});
+
+
+// Ventana modal
+var modal1 = document.getElementById("ventanaModal1");
+
+// Botón que abre el modal
+var boton1 = document.getElementById("encuesta");
+
+// Hace referencia al elemento <span> que tiene la X que cierra la ventana
+var span1 = document.getElementsByClassName("cerrar")[0];
+
+// Cuando el usuario hace click en el botón, se abre la ventana
+boton1.addEventListener("click",function() {
+  modal1.style.display = "block";
+});
+
+// Si el usuario hace click en la x, la ventana se cierra
+span1.addEventListener("click",function() {
+  modal1.style.display = "none";
+});
+
+// Si el usuario hace click fuera de la ventana, se cierra.
+window.addEventListener("click",function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
   }
 });

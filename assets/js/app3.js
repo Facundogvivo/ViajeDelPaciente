@@ -21,7 +21,7 @@ function piso1AKinesiologia(){
     var alto = mi_canvas.height;
 
     let pisoEstablecimiento = new Image();
-    pisoEstablecimiento.src ="assets/img/img/piso1B.png";
+    pisoEstablecimiento.src ="assets/img/img/nivel 1B.png";
     pisoEstablecimiento.addEventListener('load', mostrar_imagen, false);
     
     function mostrar_imagen() {
@@ -33,8 +33,23 @@ function piso1AKinesiologia(){
 
 function mensaje1() {
     document.getElementById('piso').innerHTML = "Piso 1"
-    document.getElementById('titulo1').innerHTML = "Debe dirigirse a la <font color='red'><em><b>Sala de esperade kinesiología de la Torre A</b></em></font>"
+    document.getElementById('titulo1').innerHTML = "Debe dirigirse a la <font color='red'><em><b>Sala de espera de kinesiología de la Torre A</b></em></font>"
 
+}
+
+function sonido1(){
+    // Carga un sonido a través de su fuente y lo inyecta de manera oculta
+const cargarSonido1 = function (fuente) {
+    const sonido1 = document.createElement("audio");
+    sonido1.src = fuente;
+    sonido1.setAttribute("preload", "auto");
+    sonido1.setAttribute("controls", "none");
+    sonido1.style.display = "none"; // <-- oculto
+    document.body.appendChild(sonido1);
+    return sonido1;
+};
+const sonido1 = cargarSonido1("assets/audio/nivel 1B.mp3");
+    sonido1.play();
 }
 
 const mi_canvas = document.getElementById("canvas");
@@ -45,9 +60,11 @@ const contexto = mi_canvas.getContext("2d");
 function SE1TAK() {
 
     const lineas = [
-        { x1: 126, y1: 63, x2: 130, y2: 65 },
-        { x1: 130, y1: 65, x2: 142, y2: 84 },
-        { x1: 142, y1: 84, x2: 150, y2: 87 }
+        { x1: 65, y1: 125, x2: 65, y2: 108 },
+        { x1: 65, y1: 108, x2: 86, y2: 108 },
+        { x1: 86, y1: 108, x2: 125, y2: 87 },
+        { x1: 125, y1: 87, x2: 135, y2: 87 },
+        { x1: 135, y1: 87, x2: 135, y2: 73}
     ];
     
     let indiceLineaActual = 0;
@@ -94,3 +111,30 @@ function paso1(){
     mensaje1();
     SE1TAK();
 }
+
+
+// Ventana modal
+var modal1 = document.getElementById("ventanaModal1");
+
+// Botón que abre el modal
+var boton1 = document.getElementById("encuesta");
+
+// Hace referencia al elemento <span> que tiene la X que cierra la ventana
+var span1 = document.getElementsByClassName("cerrar")[0];
+
+// Cuando el usuario hace click en el botón, se abre la ventana
+boton1.addEventListener("click",function() {
+  modal1.style.display = "block";
+});
+
+// Si el usuario hace click en la x, la ventana se cierra
+span1.addEventListener("click",function() {
+  modal1.style.display = "none";
+});
+
+// Si el usuario hace click fuera de la ventana, se cierra.
+window.addEventListener("click",function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+});

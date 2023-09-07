@@ -21,7 +21,7 @@ function piso1ACardiologia(){
     var alto = mi_canvas.height;
 
     let pisoEstablecimiento = new Image();
-    pisoEstablecimiento.src ="assets/img/img/piso1A.png";
+    pisoEstablecimiento.src ="assets/img/img/nivel 1A.png";
     pisoEstablecimiento.addEventListener('load', mostrar_imagen, false);
     
     function mostrar_imagen() {
@@ -33,10 +33,24 @@ function piso1ACardiologia(){
 
 function mensaje1() {
     document.getElementById('piso').innerHTML = "Piso 1"
-    document.getElementById('titulo1').innerHTML = "Debe dirigirse a la <font color='red'><em><b>Sala de espera de cardología de la Torre A</b></em></font>"
+    document.getElementById('titulo1').innerHTML = "Debe dirigirse a la <font color='red'><em><b>Sala de espera de cardiología de la Torre A</b></em></font>"
 
 }
 
+function sonido1(){
+    // Carga un sonido a través de su fuente y lo inyecta de manera oculta
+const cargarSonido1 = function (fuente) {
+    const sonido1 = document.createElement("audio");
+    sonido1.src = fuente;
+    sonido1.setAttribute("preload", "auto");
+    sonido1.setAttribute("controls", "none");
+    sonido1.style.display = "none"; // <-- oculto
+    document.body.appendChild(sonido1);
+    return sonido1;
+};
+const sonido1 = cargarSonido1("assets/audio/nivel 1A.mp3");
+    sonido1.play();
+}
 const mi_canvas = document.getElementById("canvas");
 const contexto = mi_canvas.getContext("2d");
 
@@ -45,8 +59,8 @@ const contexto = mi_canvas.getContext("2d");
 function SE1TAC() {
 
     const lineas = [
-        { x1: 126, y1: 63, x2: 138, y2: 67 },
-        { x1: 138, y1: 67, x2: 171, y2: 42 }
+        { x1: 260, y1: 100, x2: 260, y2: 82 },
+        { x1: 260, y1: 82, x2: 145, y2: 82 }
     ];
     
     let indiceLineaActual = 0;
@@ -93,3 +107,30 @@ function paso1(){
     mensaje1();
     SE1TAC();
 }
+
+
+// Ventana modal
+var modal1 = document.getElementById("ventanaModal1");
+
+// Botón que abre el modal
+var boton1 = document.getElementById("encuesta");
+
+// Hace referencia al elemento <span> que tiene la X que cierra la ventana
+var span1 = document.getElementsByClassName("cerrar")[0];
+
+// Cuando el usuario hace click en el botón, se abre la ventana
+boton1.addEventListener("click",function() {
+  modal1.style.display = "block";
+});
+
+// Si el usuario hace click en la x, la ventana se cierra
+span1.addEventListener("click",function() {
+  modal1.style.display = "none";
+});
+
+// Si el usuario hace click fuera de la ventana, se cierra.
+window.addEventListener("click",function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+});

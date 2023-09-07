@@ -21,7 +21,7 @@ function piso1AFarmacia(){
     var alto = mi_canvas.height;
 
     let pisoEstablecimiento = new Image();
-    pisoEstablecimiento.src ="assets/img/img/piso1D.png";
+    pisoEstablecimiento.src ="assets/img/img/nivel 1D.png";
     pisoEstablecimiento.addEventListener('load', mostrar_imagen, false);
     
     function mostrar_imagen() {
@@ -37,6 +37,21 @@ function mensaje1() {
 
 }
 
+function sonido1(){
+    // Carga un sonido a través de su fuente y lo inyecta de manera oculta
+const cargarSonido1 = function (fuente) {
+    const sonido1 = document.createElement("audio");
+    sonido1.src = fuente;
+    sonido1.setAttribute("preload", "auto");
+    sonido1.setAttribute("controls", "none");
+    sonido1.style.display = "none"; // <-- oculto
+    document.body.appendChild(sonido1);
+    return sonido1;
+};
+const sonido1 = cargarSonido1("assets/audio/nivel 1D.mp3");
+    sonido1.play();
+}
+
 const mi_canvas = document.getElementById("canvas");
 const contexto = mi_canvas.getContext("2d");
 
@@ -45,10 +60,11 @@ const contexto = mi_canvas.getContext("2d");
 function SE1TAF() {
 
     const lineas = [
-        { x1: 126, y1: 63, x2: 130, y2: 65 },
-        { x1: 130, y1: 65, x2: 142, y2: 84 },
-        { x1: 142, y1: 84, x2: 103, y2: 114 },
-        { x1: 103, y1: 113, x2: 110, y2: 115 }
+        { x1: 50, y1: 110, x2: 50, y2: 92 },
+        { x1: 50, y1: 92, x2: 67, y2: 92 },
+        { x1: 67, y1: 92, x2: 110, y2: 73 },
+        { x1: 109, y1: 73, x2: 281, y2: 70 },
+        { x1: 280, y1: 70, x2: 280, y2: 61 }
     ];
     
     let indiceLineaActual = 0;
@@ -95,3 +111,30 @@ function paso1(){
     mensaje1();
     SE1TAF();
 }
+
+
+// Ventana modal
+var modal1 = document.getElementById("ventanaModal1");
+
+// Botón que abre el modal
+var boton1 = document.getElementById("encuesta");
+
+// Hace referencia al elemento <span> que tiene la X que cierra la ventana
+var span1 = document.getElementsByClassName("cerrar")[0];
+
+// Cuando el usuario hace click en el botón, se abre la ventana
+boton1.addEventListener("click",function() {
+  modal1.style.display = "block";
+});
+
+// Si el usuario hace click en la x, la ventana se cierra
+span1.addEventListener("click",function() {
+  modal1.style.display = "none";
+});
+
+// Si el usuario hace click fuera de la ventana, se cierra.
+window.addEventListener("click",function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+});
