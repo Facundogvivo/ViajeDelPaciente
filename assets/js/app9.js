@@ -118,7 +118,11 @@ function paso1(){
     mensaje1();
     ascensor();
 }
-
+function paso2() {
+  
+  document.getElementById("abrirModal").style.display ="none";
+  document.getElementById("encuesta").style.display ="block";
+}
 // Ventana modal
 var modal = document.getElementById("ventanaModal");
 
@@ -160,16 +164,19 @@ var span1 = document.getElementsByClassName("cerrar")[0];
 // Cuando el usuario hace click en el botón, se abre la ventana
 boton1.addEventListener("click",function() {
   modal1.style.display = "block";
+  paso2()
 });
 
 // Si el usuario hace click en la x, la ventana se cierra
 span1.addEventListener("click",function() {
   modal1.style.display = "none";
+  paso2()
 });
 
 // Si el usuario hace click fuera de la ventana, se cierra.
 window.addEventListener("click",function(event) {
   if (event.target == modal1) {
     modal1.style.display = "none";
+    paso2()
   }
 });

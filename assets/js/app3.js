@@ -92,6 +92,7 @@ function SE1TAK() {
 
             if (indiceLineaActual >= lineas.length) {
                 cancelAnimationFrame(fx_animar_linea);
+                document.getElementById("encuesta").style.display ="block";
                 return;
             }
         }

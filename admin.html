@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LZNJC53FB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6LZNJC53FB');
+    </script>
+    <meta charset="UTF-8">
+		<link rel="shortcut icon" type="image/jpg" href="assets/img/ico/Placemap.ico"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>PlaceMap</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing:border-box
+        }
+        body,html {
+            height:100%;
+            font-family:Poppins-Regular,sans-serif
+        }
+        input {
+            outline:none;
+            border:none
+        }
+
+        button {
+            outline:none!important;
+            border:none;
+            background:0 0
+        }
+        button:hover {
+            cursor:pointer
+        }
+        .limiter{
+            width:100%;
+            margin:0 auto
+        }
+        .container-login100 {
+            width:100%;
+            min-height:100vh;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            align-items:center;
+            padding:15px;
+            background:#fff
+        }
+        .wrap-login100 {
+            width:390px;
+            background:#fff
+        }
+        .login100-form {
+            width:100%
+        }
+
+        .login100-form-title {
+            display:block;
+            font-family:Poppins-Bold;
+            font-size:39px;
+            color:#333;
+            line-height:1.2;
+            text-align:center
+        }
+        .login100-form-avatar {
+            display:block;
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            overflow:hidden;
+            margin:0 auto
+        }
+        .login100-form-avatar img {
+            width:100%
+        }
+        .wrap-input100 {
+            width:100%;
+            position:relative;
+            border-bottom:2px solid #d9d9d9
+        }
+        .input100 {
+            font-family:Poppins-SemiBold;
+            font-size:18px;
+            color:#555;
+            line-height:1.2;
+            display:block;
+            width:100%;
+            height:52px;
+            background:0 0;
+            padding:0 5px
+        }
+        .focus-input100 {
+            position:absolute;
+            display:block;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            pointer-events:none
+        }
+        .focus-input100::before {
+            content:"";
+            display:block;
+            position:absolute;
+            bottom:-2px;
+            left:0;
+            width:0;
+            height:2px;
+            transition:all .4s;
+            background:#57b846
+        }
+        .focus-input100::after {
+            font-family:Poppins-Medium;
+            font-size:18px;
+            color:#999;
+            line-height:1.2;
+            content:attr(data-placeholder);
+            display:block;
+            width:100%;
+            position:absolute;
+            top:15px;
+            left:0;
+            padding-left:5px;
+            transition:all .4s}
+            
+        .input100:focus+.focus-input100::after {
+            top:-20px;
+            font-size:15px
+        }
+        .input100:focus+.focus-input100::before {
+            width:100%
+        }
+        .has-val.input100+.focus-input100::after {
+            top:-20px;
+            font-size:15px
+        }
+        .has-val.input100+.focus-input100::before {
+            width:100%
+        }
+        .container-login100-form-btn {
+            width:100%;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center
+        }
+        .login100-form-btn {
+            font-family:Poppins-Medium;
+            font-size:16px;
+            color:#fff;
+            line-height:1.2;
+            text-transform:uppercase;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:0 20px;
+            width:100%;
+            height:50px;
+            background-color:#57b846;
+            border-radius:25px;
+            box-shadow:0 10px 30px 0 rgba(87,184,70,.5);
+            transition:all .4s
+        }
+        .login100-form-btn:hover {
+            background-color:#333;
+            box-shadow:0 10px 30px 0 rgba(51,51,51,.5);
+        }
+        .validate-input{
+            position:relative
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/img/img/Placemap.png" alt="Placemap" height="30px" class="d-inline-block align-text-top">
+          PlaceMap
+        </a>        
+      </div>
+    </nav>
+    <main>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <form class="login100-form" action="main_login.php" method="post">
+                        <span class="login100-form-title">
+                            Bienvenido<br>Facundo<br>Gonzalez Vivo
+                        </span><br>
+                        <span class="login100-form-avatar">
+                            <img src="assets/img/img/facundo.png" alt="Facundo Gonzalez Vivo">
+                        </span><br>
+                        <div class="wrap-input100 validate-input" data-validate="Escribí tu rut">
+                            <input class="input100" type="text" name="txt_rut" id="txt_rut">
+                            <span class="focus-input100" data-placeholder="Rut"></s>
+                        </div><br>
+                        <div class="wrap-input100 validate-input" data-validate="Escribí la contraseña">
+                            <input class="input100" type="password" name="txt_contrasenna" id="txt_contrasenna">
+                            <span class="focus-input100" data-placeholder="Contraseña"></span>
+                        </div><br><br><br>
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn">
+                                Entrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+  </body>
+</html>

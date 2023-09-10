@@ -18,44 +18,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+
     <title>PlaceMap</title>
   </head>
   <body>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
-    <script src="assets/js/opciones.js"></script>
-    <nav class="navbar color">
+    <nav class="navbar navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
           <img src="assets/img/img/Placemap.png" alt="Placemap" height="30px" class="d-inline-block align-text-top">
           PlaceMap
-        </a>
-        <a class="navbar-brand" href="admin.html">
-          <img src="assets/img/img/flomas.jpg" alt="Flomas"  height="30px" style="display: right; border-radius: 8px;">
-        </a>
-        
+        </a>        
       </div>
     </nav>
     <main>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card" style="max-width: 30rem;">
-            <img src="assets/img/svg/logo-redsalud.svg" class="card-img-top" alt="Red Salud" style="padding: 20px;">
-            <div class="card-body">
-              <h5 class="card-title">Clínica Red Salud Vitacura</h5>
-              <p class="card-text"></p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">&#128204; Av. Tabancura 1185, Vitacura, Región Metropolitana</li>
-              <li class="list-group-item">&#128222; 600 718 6000</li>
-            </ul>
-            <div class="card-body">
-              <a href="inicio.html" class="btn color">IR A VER</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Me gusta</th>
+                <th scope="col">No me gusta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+
+                include("conexion.php");
+
+                // Bucle while que recorre cada registro y muestra cada campo en la tabla.
+                while ($columna = mysqli_fetch_array( $resultado ))
+                {
+            ?>
+            <tr>
+                <td><?php echo $columna['me_gusta'];?></td>
+                <td><?php echo $columna['no_me_gusta'];?></td>
+            </tr>
+            <?php
+                }
+            ?>
+        </tbody>
+    </table>
+   </main>
   </body>
 </html>

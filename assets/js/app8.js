@@ -171,6 +171,7 @@ function SE2NTA() {
 
             if (indiceLineaActual >= lineas.length) {
                 cancelAnimationFrame(fx_animar_linea);
+                document.getElementById("encuesta").style.display ="block";
                 return;
             }
         }
